@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "748687271183",
+    "firebase_url": "https://nursecare-4613f-default-rtdb.firebaseio.com",
+    "project_id": "nursecare-4613f",
+    "storage_bucket": "nursecare-4613f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:748687271183:android:57602b51d0dce1e3a70a7a",
+        "android_client_info": {
+          "package_name": "com.example.iot_project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRcyjS6KKnMG-7F3dNTxl0CBO3h4CIa7E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
