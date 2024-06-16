@@ -23,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 15.0),
+            padding: const EdgeInsets.only(top: 50,left: 10,),
             child: Text(
               "Readings",
               textAlign: TextAlign.left,
@@ -35,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15.0),
+            padding: const EdgeInsets.symmetric(horizontal: 15.0,vertical: 5),
             child: Text(
               date,
               textAlign: TextAlign.left,
@@ -55,22 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                   // Get temperature and spo2 values
                   double temperature = double.parse(healthCareData['temperature'].toString());
-                  double spo2 = double.parse(healthCareData['spo2'].toString());
-                  // double rate = double.parse(healthCareData['heart_rate'].toString());
-                  // double humidity = double.parse(healthCareData['humidity'].toString());
-                  //
-                  // List<double> temps =[];
-                  // List<double> spo2List =[];
-                  // List<double> humidityList =[];
-                  // List<double> rateList=[];
-                  // temps.add(temperature);
-                  // spo2List.add(spo2);
-                  // humidityList.add(humidity);
-                  // rateList.add(rate);
-                  //
-                  // print(temps);
-
-
+                  double heart = double.parse(healthCareData['heart_rate'].toString());
 
                   // Show dialog if temperature or spo2 exceeds threshold and warning hasn't been shown
                   if ((temperature > 20) && !warningShown) {
@@ -80,20 +65,23 @@ class _HomeScreenState extends State<HomeScreen> {
                         context: context,
                         builder: (BuildContext context) {
                           return AlertDialog(
+                            iconColor: Colors.red,
                             title: const Row(
                               children: [
-                                Icon(Icons.warning,color: Colors.red,size: 30,),
+                                Icon(Icons.warning,color: Colors.red,size: 60,),
                                 SizedBox(width: 15,),
-                                Text("Warning"),
+                                Text("Warning",style: TextStyle(fontWeight: FontWeight.w500),),
                               ],
                             ),
-                            content: const Text("Temperature is too high!"),
+                            content: const Text("Temperature is too high!\nYou Should See Doctor Now ",
+                              style: TextStyle(color: Colors.black,fontSize: 15),),
                             actions: [
                               TextButton(
                                 onPressed: () {
                                   Navigator.of(context).pop();
                                 },
                                 child: const Text("OK",style: TextStyle(
+                                  fontSize: 16,
                                   color: Colors.black
                                 ),),
                               ),
@@ -104,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     });
                   }
 
-                  if ((spo2 > 130) && !warningShown2) {
+                  if ((heart > 90) && !warningShown2) {
                     warningShown2 = true; // Set flag to true to indicate warning has been shown
                     WidgetsBinding.instance!.addPostFrameCallback((_) {
                       showDialog(
@@ -113,18 +101,21 @@ class _HomeScreenState extends State<HomeScreen> {
                           return AlertDialog(
                             title: const Row(
                               children: [
-                                Icon(Icons.warning,color: Colors.red,size: 30,),
+                                Icon(Icons.warning,color: Colors.red,size: 60,),
                                 SizedBox(width: 15,),
-                                Text("Warning"),
+                                Text("Warning",style: TextStyle(fontWeight: FontWeight.w500)),
                               ],
                             ),
-                            content: const Text("Spo2 is too high!"),
+                            content: const Text("Heart Rate is too high!\nYou Should See Doctor Now",
+                            style: TextStyle(color: Colors.black,fontSize: 15),),
                             actions: [
                               TextButton(
                                 onPressed: () {
                                   Navigator.of(context).pop();
                                 },
-                                child: const Text("OK"),
+                                child: const Text("OK",style: TextStyle(
+                                 fontSize: 16,
+                               color: Colors.black),)
                               ),
                             ],
                           );
@@ -135,7 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                   // Show the data regardless of warnings
                   return Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(5.0),
                     child: Container(
                       decoration:  BoxDecoration(
                         color:   Colors.white,

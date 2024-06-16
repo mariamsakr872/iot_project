@@ -35,15 +35,17 @@ class _SplashScreenState extends State<SplashScreen> {
             decoration: const BoxDecoration(
               image: DecorationImage(
                   image: AssetImage("assets/images/splash_background.jpg"),
-                  fit: BoxFit.cover),
+                fit: BoxFit.cover
+                  ),
             ),
           ),
-          const Text("IoT",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 70,
-                fontFamily: 'Pacifico'
-              )),
+          Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage("assets/images/background.png"),
+              ),
+            ),
+          ),
         ],
       ),
     );
